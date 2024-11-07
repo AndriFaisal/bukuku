@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 9 Ukuran Penyebaran | Statistik Deskriptif dengan RStudio</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 9 Ukuran Penyebaran | Statistik Deskriptif dengan RStudio" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 9 Ukuran Penyebaran | Statistik Deskriptif dengan RStudio" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="Andri Faisal dan Gatot Soepriyono" />
+
+
+<meta name="date" content="2024-11-07" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="ukuran-pemusatan.html"/>
+<link rel="next" href="statistik-deskriptif-dengan-rsstudio.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#usage"><i class="fa fa-check"></i><b>1.1</b> Usage</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#render-book"><i class="fa fa-check"></i><b>1.2</b> Render book</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#preview-book"><i class="fa fa-check"></i><b>1.3</b> Preview book</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="hello-bookdown.html"><a href="hello-bookdown.html"><i class="fa fa-check"></i><b>2</b> Hello bookdown</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="hello-bookdown.html"><a href="hello-bookdown.html#a-section"><i class="fa fa-check"></i><b>2.1</b> A section</a>
+<ul>
+<li class="chapter" data-level="" data-path="hello-bookdown.html"><a href="hello-bookdown.html#an-unnumbered-section"><i class="fa fa-check"></i>An unnumbered section</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="cross.html"><a href="cross.html"><i class="fa fa-check"></i><b>3</b> Cross-references</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="cross.html"><a href="cross.html#chapters-and-sub-chapters"><i class="fa fa-check"></i><b>3.1</b> Chapters and sub-chapters</a></li>
+<li class="chapter" data-level="3.2" data-path="cross.html"><a href="cross.html#captioned-figures-and-tables"><i class="fa fa-check"></i><b>3.2</b> Captioned figures and tables</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="apa-itu-r.html"><a href="apa-itu-r.html"><i class="fa fa-check"></i><b>4</b> Apa itu R</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="apa-itu-r.html"><a href="apa-itu-r.html#perangkat-lunak-r"><i class="fa fa-check"></i><b>4.1</b> Perangkat Lunak R</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="apa-itu-statistik-deskriptif.html"><a href="apa-itu-statistik-deskriptif.html"><i class="fa fa-check"></i><b>5</b> Apa Itu Statistik Deskriptif</a></li>
+<li class="chapter" data-level="6" data-path="tipe-dan-struktur-data-r.html"><a href="tipe-dan-struktur-data-r.html"><i class="fa fa-check"></i><b>6</b> Tipe dan Struktur Data R</a>
+<ul>
+<li class="chapter" data-level="" data-path="tipe-dan-struktur-data-r.html"><a href="tipe-dan-struktur-data-r.html#data-frame"><i class="fa fa-check"></i>1. Data Frame</a></li>
+<li class="chapter" data-level="" data-path="tipe-dan-struktur-data-r.html"><a href="tipe-dan-struktur-data-r.html#vector-atomic"><i class="fa fa-check"></i>2. Vector Atomic</a></li>
+<li class="chapter" data-level="" data-path="tipe-dan-struktur-data-r.html"><a href="tipe-dan-struktur-data-r.html#matrix"><i class="fa fa-check"></i>3. Matrix</a></li>
+<li class="chapter" data-level="" data-path="tipe-dan-struktur-data-r.html"><a href="tipe-dan-struktur-data-r.html#list"><i class="fa fa-check"></i>4. List</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="penyajian-data.html"><a href="penyajian-data.html"><i class="fa fa-check"></i><b>7</b> Penyajian Data</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="penyajian-data.html"><a href="penyajian-data.html#pengantar"><i class="fa fa-check"></i><b>7.1</b> Pengantar</a></li>
+<li class="chapter" data-level="7.2" data-path="penyajian-data.html"><a href="penyajian-data.html#grafik-garis"><i class="fa fa-check"></i><b>7.2</b> Grafik Garis</a></li>
+<li class="chapter" data-level="7.3" data-path="penyajian-data.html"><a href="penyajian-data.html#box-plot"><i class="fa fa-check"></i><b>7.3</b> Box Plot</a></li>
+<li class="chapter" data-level="7.4" data-path="penyajian-data.html"><a href="penyajian-data.html#grafik-batang"><i class="fa fa-check"></i><b>7.4</b> Grafik Batang</a></li>
+<li class="chapter" data-level="7.5" data-path="penyajian-data.html"><a href="penyajian-data.html#grafik-pie"><i class="fa fa-check"></i><b>7.5</b> Grafik Pie</a></li>
+<li class="chapter" data-level="7.6" data-path="penyajian-data.html"><a href="penyajian-data.html#grafik-daun-atau-steam-leaf"><i class="fa fa-check"></i><b>7.6</b> Grafik Daun atau Steam leaf</a></li>
+<li class="chapter" data-level="" data-path="penyajian-data.html"><a href="penyajian-data.html#latihan"><i class="fa fa-check"></i>Latihan</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="ukuran-pemusatan.html"><a href="ukuran-pemusatan.html"><i class="fa fa-check"></i><b>8</b> Ukuran Pemusatan</a></li>
+<li class="chapter" data-level="9" data-path="ukuran-penyebaran.html"><a href="ukuran-penyebaran.html"><i class="fa fa-check"></i><b>9</b> Ukuran Penyebaran</a>
+<ul>
+<li class="chapter" data-level="" data-path="ukuran-penyebaran.html"><a href="ukuran-penyebaran.html#ukuran-variansi"><i class="fa fa-check"></i>1. Ukuran Variansi</a></li>
+<li class="chapter" data-level="" data-path="ukuran-penyebaran.html"><a href="ukuran-penyebaran.html#ukuran-standar-deviasi"><i class="fa fa-check"></i>2 ukuran standar deviasi</a></li>
+<li class="chapter" data-level="" data-path="ukuran-penyebaran.html"><a href="ukuran-penyebaran.html#rentang"><i class="fa fa-check"></i>3. Rentang</a></li>
+<li class="chapter" data-level="" data-path="ukuran-penyebaran.html"><a href="ukuran-penyebaran.html#sifat-dari-varians"><i class="fa fa-check"></i>4. Sifat dari varians</a></li>
+<li class="chapter" data-level="" data-path="ukuran-penyebaran.html"><a href="ukuran-penyebaran.html#soal-latihan-ukuran-penyebaran"><i class="fa fa-check"></i>Soal Latihan Ukuran Penyebaran</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="statistik-deskriptif-dengan-rsstudio.html"><a href="statistik-deskriptif-dengan-rsstudio.html"><i class="fa fa-check"></i><b>10</b> Statistik Deskriptif dengan RSstudio</a></li>
+<li class="chapter" data-level="11" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html"><i class="fa fa-check"></i><b>11</b> Footnotes and citations</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#footnotes"><i class="fa fa-check"></i><b>11.1</b> Footnotes</a></li>
+<li class="chapter" data-level="11.2" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#citations"><i class="fa fa-check"></i><b>11.2</b> Citations</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="blocks.html"><a href="blocks.html"><i class="fa fa-check"></i><b>12</b> Blocks</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="blocks.html"><a href="blocks.html#equations"><i class="fa fa-check"></i><b>12.1</b> Equations</a></li>
+<li class="chapter" data-level="12.2" data-path="blocks.html"><a href="blocks.html#theorems-and-proofs"><i class="fa fa-check"></i><b>12.2</b> Theorems and proofs</a></li>
+<li class="chapter" data-level="12.3" data-path="blocks.html"><a href="blocks.html#callout-blocks"><i class="fa fa-check"></i><b>12.3</b> Callout blocks</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="sharing-your-book.html"><a href="sharing-your-book.html"><i class="fa fa-check"></i><b>13</b> Sharing your book</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="sharing-your-book.html"><a href="sharing-your-book.html#publishing"><i class="fa fa-check"></i><b>13.1</b> Publishing</a></li>
+<li class="chapter" data-level="13.2" data-path="sharing-your-book.html"><a href="sharing-your-book.html#pages"><i class="fa fa-check"></i><b>13.2</b> 404 pages</a></li>
+<li class="chapter" data-level="13.3" data-path="sharing-your-book.html"><a href="sharing-your-book.html#metadata-for-sharing"><i class="fa fa-check"></i><b>13.3</b> Metadata for sharing</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistik Deskriptif dengan RStudio</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="ukuran-penyebaran" class="section level1 hasAnchor" number="9">
+<h1><span class="header-section-number">Chapter 9</span> Ukuran Penyebaran<a href="ukuran-penyebaran.html#ukuran-penyebaran" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Setelah kita mengetahui namanya ukuran pemusatan maka kita akan mempelajari ukuran penyebaran tersebut atau ukuran variasi kita menyadari bahwa dalam satu kelompok sampel data maka kita akan tahu tidak semuanya sama bahkan seorang pegawai dengan kemampuan sama pengalaman sama dan tanggungan yang sama gajinya tidak sama persis itu yang terjadi di perusahaan maka kita juga harus tahu bahwa tidak semua ada data yang terdistribusi tidak normal ada satu kecenderungan di negara-negara maju orang lebih jauh sejahtera sedangkan yang miskinnya dikit sedangkan negara-negara terbelakang hanya sedikit orang yang kaya dan orang yang miskin banyak sekali. Pada gambar tetapi secara keseluruhan data memang kita akui bahwa negara-negara ketiga tidak ada yang kekayaannya melebihi orang-orang di negara maju walaupun memang seperti di negara kita ada negara ada pengusaha yang super kaya tetapi kalau dibandingkan dengan pengusaha di Amerika seperti emas tentu tidak setara seperti itu nah karena rata-rata tersebut saya masih bisa gunakan untuk menggambarkan salah satu populasi ataupun dari sampel tersebut tetapi pada kenyataannya bahwa ada beberapa kelompok tertentu yang rata-ratanya sama itu ternyata banyak yang tidak lulus misalnya di kelas A dan plastik tersebut mempunyai rata-rata yang sama 60 tetapi di kelas A itu ternyata tidak banyak yang lulus Hal ini karena di kelas aa aja ada nilai yang sangat tinggi sekali sedangkan ada yang nilai kebanyakan rendah sekali jadi nilai-nilai yang tinggi tersebut menutupi nilai-nilai rendah tetapi sebagai syarat kelulusan dari mahasiswa kelas A tidak memenuhi sehingga banyak dari mahasiswa yang di sini daerah rata-ratanya lebih tinggi Maka itu banyak yang tidak lulus nah karena itu kenapa kita mempelajari ukuran penyebaran karena kadang-kadang di beberapa kasus memang tidak berlaku sepenuhnya rata-rata yang sudah tersebut.
+Tentu seperti diuraikan di atas banyak faedah daripada kita mempelajari ukuran penyebaran tersebut kita di dalam dunia investasi mengenal apa yang namanya risiko sebagai bentuk dari konsekuensi daripada keuntungan yang diharapkan jadi kalau keuntungan itu bisa saja tinggi tetapi juga bisa jadi akan rendah ketika atau manakala suatu resikonya besar sekali dan dalam dunia investasi kita mengenal bahwa tingginya resiko akan setara dengan tingginya keuntungan yang diharapkan</p>
+<p>Beberpa ahli stataistik mencoba untuk mengukur beberapa data yang menyebar. adapun ukuran data yang digunakan untuk penyebaran data adalah sebagai berikut</p>
+<div id="ukuran-variansi" class="section level2 unnumbered hasAnchor">
+<h2>1. Ukuran Variansi<a href="ukuran-penyebaran.html#ukuran-variansi" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Ukuran ini yang sering digunakan dengan merupakan jumlah selisjih kuadrat dari tiap bilangan dengan rata-rata diagi dengan jumlah set data. Tentu tidak semua bilanhan akanbsama dengan rata-rata. Kalau ada sermua seragam seperti terjadinya nilai ujian yang sama oerssi mislanya ujian dengan bentuk soal pilihan ganda yang akan menghasilkan nilai yang sama maka
+Sample Variance
+s^2=(∑▒(x-x ̅ )^2 )/(n-1)
+Dimana
+S2 : Simpangan Variance
+x : Nilai x
+x ̅ : Rata-rata X
+n : banyaknya data</p>
+<p><span class="math display">\[
+s^2 = \sqrt{\frac{1}{n - 1} \sum_{i=1}^{n} (x_i - \bar{x})^2}
+\]</span></p>
+<p><strong>Keterangan:</strong>
+- <span class="math inline">\(x_i\)</span>: Nilai setiap elemen dalam sampel.
+- <span class="math inline">\(\bar{x}\)</span>: Rata-rata sampel.
+- <span class="math inline">\(n\)</span>: Jumlah elemen dalam sampel.
+- <span class="math inline">\((n - 1)\)</span>: Penyebut ini digunakan dalam sampel untuk menghasilkan estimasi tak bias dari standar deviasi populasi.
+- <span class="math inline">\((x_i - \bar{x})^2\)</span>: Kuadrat dari deviasi setiap elemen terhadap rata-rata sampel.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Ada simpangan rata-rata yang merupakan selisih antara tiap nilai dengan nilai rata-ratanya tersebut. Jadi tiap nilai dikurangi dengan nilai rata-ratanya dalam bentuk nilai yang absolut atau tidak bisa negatif setelah itu baru kita bagikan dari jumlah nilai selisih yang absolut tersebut dengan jumlah nilai yang kita gunakan.. Rumusnya adalah sebagai berikut:</li>
+</ol>
+<p>Simpangan rata-rata adalah ukuran dispersi yang menunjukkan rata-rata dari nilai absolut deviasi setiap data terhadap rata-rata. Rumus simpangan rata-rata untuk data <span class="math inline">\(x_1, x_2, \dots, x_n\)</span> adalah sebagai berikut:</p>
+<p><span class="math display">\[
+\text{Simpangan Rata-rata} = \frac{1}{n} \sum_{i=1}^{n} |x_i - \bar{x}|
+\]</span></p>
+<p><strong>Keterangan:</strong>
+- <span class="math inline">\(x_i\)</span>: Nilai setiap elemen dalam data.
+- <span class="math inline">\(\bar{x}\)</span>: Rata-rata dari seluruh data.
+- <span class="math inline">\(n\)</span>: Jumlah elemen dalam data.
+- <span class="math inline">\(\sum\)</span>: Notasi penjumlahan dari <span class="math inline">\(i = 1\)</span> hingga <span class="math inline">\(n\)</span>.
+- <span class="math inline">\(|x_i - \bar{x}|\)</span>: Nilai absolut dari selisih antara <span class="math inline">\(x_i\)</span> dan rata-rata <span class="math inline">\(\bar{x}\)</span>, yang menunjukkan deviasi setiap data terhadap rata-rata.</p>
+<p>Simpangan rata-rata memberikan informasi tentang seberapa jauh rata-rata setiap data dari rata-rata keseluruhan.</p>
+</div>
+<div id="ukuran-standar-deviasi" class="section level2 unnumbered hasAnchor">
+<h2>2 ukuran standar deviasi<a href="ukuran-penyebaran.html#ukuran-standar-deviasi" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Ini adalah ukuran penyebaran yang lebih mudah difahami oleh penguna stataistik. Kita akan melihat standar deviasi atau standar simpangan yang ada dengan cara melihat dari nilai ini atau dari deviasi adalah atau merupakan akar kuadrat dari variansi
+Nilai akar kuadrat uang lebih kecil daripada variansi memberikan suatau ukuran yang lebih diterima oleh pembaca atau pengguna data yang masih belum mengetahui nilai statistik.
+Jika kita memiliki data populasi <span class="math inline">\(x_1, x_2, \dots, x_N\)</span>, standar deviasi populasi (<span class="math inline">\(\sigma\)</span>) dihitung dengan rumus:</p>
+<p><span class="math display">\[
+\sigma = \sqrt{\frac{1}{N} \sum_{i=1}^{N} (x_i - \mu)^2}
+\]</span></p>
+<p><strong>Keterangan:</strong>
+- <span class="math inline">\(x_i\)</span>: Nilai setiap elemen dalam populasi.
+- <span class="math inline">\(\mu\)</span>: Rata-rata populasi.
+- <span class="math inline">\(N\)</span>: Jumlah elemen dalam populasi.
+- <span class="math inline">\(\sum\)</span>: Notasi penjumlahan dari <span class="math inline">\(i = 1\)</span> hingga <span class="math inline">\(N\)</span>.
+- <span class="math inline">\((x_i - \mu)^2\)</span>: Kuadrat dari deviasi setiap elemen terhadap rata-rata populasi.</p>
+<p>Standar Deviasi Sampel
+Jika kita memiliki data sampel <span class="math inline">\(x_1, x_2, \dots, x_n\)</span>, standar deviasi sampel (<span class="math inline">\(s\)</span>) dihitung dengan rumus:</p>
+<p><span class="math display">\[
+s = \sqrt{\frac{1}{n - 1} \sum_{i=1}^{n} (x_i - \bar{x})^2}
+\]</span></p>
+<p><strong>Keterangan:</strong>
+- <span class="math inline">\(x_i\)</span>: Nilai setiap elemen dalam sampel.
+- <span class="math inline">\(\bar{x}\)</span>: Rata-rata sampel.
+- <span class="math inline">\(n\)</span>: Jumlah elemen dalam sampel.
+- <span class="math inline">\((n - 1)\)</span>: Penyebut ini digunakan dalam sampel untuk menghasilkan estimasi tak bias dari standar deviasi populasi.
+- <span class="math inline">\((x_i - \bar{x})^2\)</span>: Kuadrat dari deviasi setiap elemen terhadap rata-rata sampel.</p>
+<p>Standar deviasi menggambarkan seberapa jauh rata-rata penyebaran data dalam sekumpulan data, baik itu populasi atau sampel.</p>
+</div>
+<div id="rentang" class="section level2 unnumbered hasAnchor">
+<h2>3. Rentang<a href="ukuran-penyebaran.html#rentang" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Rentang atau Range juga bisa menjadi suatu ukuran penyebaran data karena dari rentang ini kita akan melihat seberapa besar nilai rentang antara yang terbesar dan yang terkecil contoh lalu nilai maksimum yaitu bisa 10 kali dari nilai minimum ya maka akan menghasilkan rentang yang besar sekali atau terjadinya suatu varian yang besar sekali dari tentang sendiri sebenarnya sudah bisa diduga sebuah set data atau kumpulan data sampel itu bisa menunjukkan apa Data tersebut mempunyai varian sebesar.</p>
+</div>
+<div id="sifat-dari-varians" class="section level2 unnumbered hasAnchor">
+<h2>4. Sifat dari varians<a href="ukuran-penyebaran.html#sifat-dari-varians" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Kita perlu mempelajari bahwa salah satu bentuk ukuran adalah ukuran penyebaran adalah panjang adalah variasi ya jadi memang tidak ada di dunia ini Maka ada beberapa sifat yang bisa kita ketahui dari variasi tersebut: garis baru
+1. Varians mempunyai perhitungan atau nilai yang selalu positif Karena perhitungan selisih dari tiap angka tersebut dengan rata-rata sudah positif karenanya delay khasiat akan selalu positif kamu ganti baju
+2. Karena nilai tersebut positif maka ada yang menilai besar dan juga nilai yang kecil nilai besar itu disebabkan karena selisih dari nilai individu dengan nilai rata-rata itu besar sekali makanannya ada simpan nilai jenis variasi nya besar sekali aku berada sebaliknya dengan nilai variasi yang kecil maka akan menunjukkan bahwa data tersebut mempunyai variasi yang rendah atau perbedaan antara beberapa data yang masuk dalam set anggota tersebut tidak beberapa besar itu baris baru baris baru
+3. Karena nilai ini adalah variasi maka nilai varians akan sensitif terhadap nilai-nilai yang outlier atau nilai-nilai yang sangat jauh berbeda dengan ukuran pemusatannya begitu ada nilai out layernya yang masuk maka dapat dipastikan nilai variansnya akan berbeda dan akan menunjukkan suatu nilai yang lebih tinggi daripada nilai sebelumnya.
+4. Tentu banyaknya itu akan bisa diatasi misalnya dengan peng-kuadratkan nilai atau dengan melakukan logaritma hingga membuat data-data tersebut menjadi lebih seragam nah ini berapa teknik ini dilakukan untuk memuluskan suatu asumsi model..</p>
+</div>
+<div id="soal-latihan-ukuran-penyebaran" class="section level2 unnumbered hasAnchor">
+<h2>Soal Latihan Ukuran Penyebaran<a href="ukuran-penyebaran.html#soal-latihan-ukuran-penyebaran" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>1 Pak Samin mengadakan ujian matematika dan dari 10 siswa itu diperoleh data nilai mahasiswa di kelas A1 adalah sebagai berikut:</p>
+<p>70, 80, 90, 100, 110, 120, 130, 140, 150, 160</p>
+<p>Hitunglah:</p>
+<ul>
+<li>Jangkauan</li>
+<li>Simpangan rata-rata</li>
+<li>Simpangan baku</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>PT Asti ingin mengetahui profil dari variasi gaji karyawannya sebanyak 10 orang:</li>
+</ol>
+<p>Rp 2.000.000, Rp 3.500.000, Rp 4.000.000, Rp 5.000.000, Rp 6.000.000, Rp 7.000.000, Rp 8.000.000, Rp 9.000.000, Rp 9.500.000</p>
+<p>Hitunglah:</p>
+<ul>
+<li>Kuartil pertama</li>
+<li>Kuartil ketiga</li>
+<li>Simpangan kuartil</li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li>toko emas intan berlian ingin mengetahui profil dari penjualannya hari ke hari. Ia mencatat beberapa penjualan selama 10 hari dan ingin mengetahui variasi yang terjadi</li>
+</ol>
+<p>17, 12, 15, 18, 20, 22, 23, 28, 30, 32</p>
+<p>Hitunglah:</p>
+<ul>
+<li>Median</li>
+<li>MAD</li>
+<li>Skewness</li>
+</ul>
+<ol start="4" style="list-style-type: decimal">
+<li>Dalam setiap produksi PT Baja selalu mengukur standar tetapi hasil yang diberikan oleh para suppliernya berbeda-beda makanannya PT Baja ingin mengetahui setidaknya dari 20 sampel variasi dari produk barang tersebut:</li>
+</ol>
+<p>101, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 111, 112, 114, 115, 116, 117, 118, 119</p>
+<p>Hitunglah:</p>
+<ul>
+<li>Jangkauan</li>
+<li>Simpangan rata-rata</li>
+<li>Simpangan baku</li>
+<li>Kurtosis</li>
+</ul>
+<ol start="5" style="list-style-type: decimal">
+<li>t PT kontraktor selalu jaya ingin mengetahui berapa lama penyelesaian suatu proyek karena ada beberapa proyek yang dilakukan dalam waktu singkat dan juga elektrolit digunakan dalam waktu tertentu</li>
+</ol>
+<pre><code>10 hari, 12 hari, 15 hari, 18 hari, 20 hari, 22 hari, 25 hari, 28 hari, 30 hari, 32 hari</code></pre>
+<p>Hitunglah:</p>
+<ul>
+<li>Jangkauan</li>
+<li>Simpangan rata-rata</li>
+<li>Simpangan baku</li>
+<li>Skewness</li>
+<li>Kurtosis</li>
+</ul>
+<p>Bonus:</p>
+<p>Jelaskan secara singkat perbedaan antara simpangan rata-rata dan simpangan baku.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="ukuran-pemusatan.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="statistik-deskriptif-dengan-rsstudio.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/03-parts.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

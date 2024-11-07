@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Apa Itu Statistik Deskriptif | Statistik Deskriptif dengan RStudio</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 Apa Itu Statistik Deskriptif | Statistik Deskriptif dengan RStudio" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 Apa Itu Statistik Deskriptif | Statistik Deskriptif dengan RStudio" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="Andri Faisal dan Gatot Soepriyono" />
+
+
+<meta name="date" content="2024-11-07" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="apa-itu-r.html"/>
+<link rel="next" href="tipe-dan-struktur-data-r.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#usage"><i class="fa fa-check"></i><b>1.1</b> Usage</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#render-book"><i class="fa fa-check"></i><b>1.2</b> Render book</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#preview-book"><i class="fa fa-check"></i><b>1.3</b> Preview book</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="hello-bookdown.html"><a href="hello-bookdown.html"><i class="fa fa-check"></i><b>2</b> Hello bookdown</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="hello-bookdown.html"><a href="hello-bookdown.html#a-section"><i class="fa fa-check"></i><b>2.1</b> A section</a>
+<ul>
+<li class="chapter" data-level="" data-path="hello-bookdown.html"><a href="hello-bookdown.html#an-unnumbered-section"><i class="fa fa-check"></i>An unnumbered section</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="cross.html"><a href="cross.html"><i class="fa fa-check"></i><b>3</b> Cross-references</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="cross.html"><a href="cross.html#chapters-and-sub-chapters"><i class="fa fa-check"></i><b>3.1</b> Chapters and sub-chapters</a></li>
+<li class="chapter" data-level="3.2" data-path="cross.html"><a href="cross.html#captioned-figures-and-tables"><i class="fa fa-check"></i><b>3.2</b> Captioned figures and tables</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="apa-itu-r.html"><a href="apa-itu-r.html"><i class="fa fa-check"></i><b>4</b> Apa itu R</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="apa-itu-r.html"><a href="apa-itu-r.html#perangkat-lunak-r"><i class="fa fa-check"></i><b>4.1</b> Perangkat Lunak R</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="apa-itu-statistik-deskriptif.html"><a href="apa-itu-statistik-deskriptif.html"><i class="fa fa-check"></i><b>5</b> Apa Itu Statistik Deskriptif</a></li>
+<li class="chapter" data-level="6" data-path="tipe-dan-struktur-data-r.html"><a href="tipe-dan-struktur-data-r.html"><i class="fa fa-check"></i><b>6</b> Tipe dan Struktur Data R</a>
+<ul>
+<li class="chapter" data-level="" data-path="tipe-dan-struktur-data-r.html"><a href="tipe-dan-struktur-data-r.html#data-frame"><i class="fa fa-check"></i>1. Data Frame</a></li>
+<li class="chapter" data-level="" data-path="tipe-dan-struktur-data-r.html"><a href="tipe-dan-struktur-data-r.html#vector-atomic"><i class="fa fa-check"></i>2. Vector Atomic</a></li>
+<li class="chapter" data-level="" data-path="tipe-dan-struktur-data-r.html"><a href="tipe-dan-struktur-data-r.html#matrix"><i class="fa fa-check"></i>3. Matrix</a></li>
+<li class="chapter" data-level="" data-path="tipe-dan-struktur-data-r.html"><a href="tipe-dan-struktur-data-r.html#list"><i class="fa fa-check"></i>4. List</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="penyajian-data.html"><a href="penyajian-data.html"><i class="fa fa-check"></i><b>7</b> Penyajian Data</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="penyajian-data.html"><a href="penyajian-data.html#pengantar"><i class="fa fa-check"></i><b>7.1</b> Pengantar</a></li>
+<li class="chapter" data-level="7.2" data-path="penyajian-data.html"><a href="penyajian-data.html#grafik-garis"><i class="fa fa-check"></i><b>7.2</b> Grafik Garis</a></li>
+<li class="chapter" data-level="7.3" data-path="penyajian-data.html"><a href="penyajian-data.html#box-plot"><i class="fa fa-check"></i><b>7.3</b> Box Plot</a></li>
+<li class="chapter" data-level="7.4" data-path="penyajian-data.html"><a href="penyajian-data.html#grafik-batang"><i class="fa fa-check"></i><b>7.4</b> Grafik Batang</a></li>
+<li class="chapter" data-level="7.5" data-path="penyajian-data.html"><a href="penyajian-data.html#grafik-pie"><i class="fa fa-check"></i><b>7.5</b> Grafik Pie</a></li>
+<li class="chapter" data-level="7.6" data-path="penyajian-data.html"><a href="penyajian-data.html#grafik-daun-atau-steam-leaf"><i class="fa fa-check"></i><b>7.6</b> Grafik Daun atau Steam leaf</a></li>
+<li class="chapter" data-level="" data-path="penyajian-data.html"><a href="penyajian-data.html#latihan"><i class="fa fa-check"></i>Latihan</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="ukuran-pemusatan.html"><a href="ukuran-pemusatan.html"><i class="fa fa-check"></i><b>8</b> Ukuran Pemusatan</a></li>
+<li class="chapter" data-level="9" data-path="ukuran-penyebaran.html"><a href="ukuran-penyebaran.html"><i class="fa fa-check"></i><b>9</b> Ukuran Penyebaran</a>
+<ul>
+<li class="chapter" data-level="" data-path="ukuran-penyebaran.html"><a href="ukuran-penyebaran.html#ukuran-variansi"><i class="fa fa-check"></i>1. Ukuran Variansi</a></li>
+<li class="chapter" data-level="" data-path="ukuran-penyebaran.html"><a href="ukuran-penyebaran.html#ukuran-standar-deviasi"><i class="fa fa-check"></i>2 ukuran standar deviasi</a></li>
+<li class="chapter" data-level="" data-path="ukuran-penyebaran.html"><a href="ukuran-penyebaran.html#rentang"><i class="fa fa-check"></i>3. Rentang</a></li>
+<li class="chapter" data-level="" data-path="ukuran-penyebaran.html"><a href="ukuran-penyebaran.html#sifat-dari-varians"><i class="fa fa-check"></i>4. Sifat dari varians</a></li>
+<li class="chapter" data-level="" data-path="ukuran-penyebaran.html"><a href="ukuran-penyebaran.html#soal-latihan-ukuran-penyebaran"><i class="fa fa-check"></i>Soal Latihan Ukuran Penyebaran</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="statistik-deskriptif-dengan-rsstudio.html"><a href="statistik-deskriptif-dengan-rsstudio.html"><i class="fa fa-check"></i><b>10</b> Statistik Deskriptif dengan RSstudio</a></li>
+<li class="chapter" data-level="11" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html"><i class="fa fa-check"></i><b>11</b> Footnotes and citations</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#footnotes"><i class="fa fa-check"></i><b>11.1</b> Footnotes</a></li>
+<li class="chapter" data-level="11.2" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#citations"><i class="fa fa-check"></i><b>11.2</b> Citations</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="blocks.html"><a href="blocks.html"><i class="fa fa-check"></i><b>12</b> Blocks</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="blocks.html"><a href="blocks.html#equations"><i class="fa fa-check"></i><b>12.1</b> Equations</a></li>
+<li class="chapter" data-level="12.2" data-path="blocks.html"><a href="blocks.html#theorems-and-proofs"><i class="fa fa-check"></i><b>12.2</b> Theorems and proofs</a></li>
+<li class="chapter" data-level="12.3" data-path="blocks.html"><a href="blocks.html#callout-blocks"><i class="fa fa-check"></i><b>12.3</b> Callout blocks</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="sharing-your-book.html"><a href="sharing-your-book.html"><i class="fa fa-check"></i><b>13</b> Sharing your book</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="sharing-your-book.html"><a href="sharing-your-book.html#publishing"><i class="fa fa-check"></i><b>13.1</b> Publishing</a></li>
+<li class="chapter" data-level="13.2" data-path="sharing-your-book.html"><a href="sharing-your-book.html#pages"><i class="fa fa-check"></i><b>13.2</b> 404 pages</a></li>
+<li class="chapter" data-level="13.3" data-path="sharing-your-book.html"><a href="sharing-your-book.html#metadata-for-sharing"><i class="fa fa-check"></i><b>13.3</b> Metadata for sharing</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistik Deskriptif dengan RStudio</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="apa-itu-statistik-deskriptif" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Apa Itu Statistik Deskriptif<a href="apa-itu-statistik-deskriptif.html#apa-itu-statistik-deskriptif" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Buatlah gambaran tentang seorang apakah dia dari mana saja? Apa ia mempunyai nama asal dari mana</p>
+<p>Statistik deskriptif hanya untuk pengumpulan dan penyajian data tok. Untuk itu dinamakan statistik deduktif juga statistik deskriptif dia menguraikan atau yang memberikan deskripsi atas data-data tersebut atau menambah keterangan bagi data-data yang ada yang sudah dikumpulkan tersebut..
+Suatu statistik deskriptif menggambarkan keadaan fenomena gejala dan situasi yang ada sebelum kita belajar mengemas statistik deskriptif bahwa kita harus mengetahui bahwa ada variabel random yang perlu kita ketahui seperti suhu yang terjadi di suatu daerah, keadaan keuangan beberapa sebuah perusahaan yang terdaftar di bursa efek Indonesia nilai dari biji suatu kebutuhan bahan pangan pendapatan di suatu kabupaten, dan juga kemampuan guru.</p>
+<p>Dalam statistik deskriptif kita bisa mendapatkan beberapa contoh dalam buku yang saya baca ini</p>
+<ol style="list-style-type: decimal">
+<li>kebanyakan perusahaan yang sudah mulai bangkrut adalah perusahaan yang mempunyai hutang lebih besar daripada asetnya yakni berkisar 50% lebih banyak daripada asetnya.
+Mahasiswa yang menyelesaikan program sarjana biasanya 90% tidak terkendala pada semester pertama atau semester kedua.
+Kita harus memperhatikan bahwa ada beberapa data yang sudah kita kumpulkan lalu kalau kita mengikut daripada data yang sudah ada disebut yang kita menguburkan lebih menjadi beberapa data-data tersebut disatukan satu sama lainnya karena mempunyai sifat yang berbeda. Asalnya adalah beberapa data tersebut jika diberikan menjadi berikut</li>
+</ol>
+<p>data nominal</p>
+<p>Data seperti ini adalah data kualitatif yang sebenarnya menggolongkan dalam beberapa hal karena itu bisa jadi acara ini dan dari kualitatif dengan beberapa kriteria tertentu hingga dimasukkan menjadi data nominal. Apa artinkata nominal?
+Misalnya kita memberikan waktu kelahiran seseorang itu dimaksud dengan data nominal karena datanya bisa meningkatkan dan bukan berarti kemudian kita juga akan dikelompokkan beberapa kategori atau badan seperti ini atau mungkin dari agama atau operasinya dari organisasi.</p>
+<p>Data ordinat adalah data yang dikelompokkan juga sama halnya dengan data nominal lain hanya dengan nominal pada tahun 197 sudah berdasarkan kategori tertentu yang penilaian itu berdasarkan dari yang terendah terbesar atau sebaliknya. Contoh dari data koordinasi seperti rangking siswa di satu kelas.</p>
+<p>Data interval</p>
+<p>Perhatikan interval adalah data yang ada diatas dan membagi data tersebut seperti nominal dan ordinal. Maka ada satu ciri khas yang dalam data ordinal yakni penambahan berupa urutan kategori yang seperti itu dengand ata ordinal yaknimamin pembagiannya berdasarkan kisaran yang sama.</p>
+<p>Contoh kita membagidata ABCDE dengan angka 12345 maka dari setiap kategori tersebut adalah mempunyai nilai yang berbeda satu dengan yang lainnya</p>
+<p>Data Rasio
+Data inilah yang mempunyai data yang lengkap dari ketiga data diatas. Memiliki angka 0 absolulut dan mempunyai makna yang empiris . Contoh adalah nilai dari Amir mendapatkan 20
+Inilah mempunyai nilai yang sebenarnya dalam bentuk penilaian O itu tidak ada seperti anak yang beroperasi nol . Atau mungkin ada yang tanah niainya nol kecuali ada gak punya tanah</p>
+<p>Analisa Statistik deskriptif menggunakan MAtLAb cetakan pertama 2008 Graha Ilmu Deddy Barnabas Lasfeto. oki Dwi Nurhayati ISBN 978-979-736-372-1. Yogyakarta</p>
+<p>Statistik Deskriptif. Dodi Wahab dan Andri Nur. 2001. Cetakan pertama dan edisi pertama</p>
+<p>Kemudian ada dananya data diakrit yang hanya menempati titik tertentu saja. Maka kita tidak bisa mengatakan. Ada anak sejumlah setengah aja.</p>
+<p>Ada data kontinues yang bisa menempati antara data atau titik yang disebut juga berkesinambungan. Pada contoh ini adalah jumlah uang dalam jumlah pecahan hingga koma yang mewakili per sen.</p>
+<p>Kalau kita tabulasi maka ada data yang dapat berupa data diskrit dari keempat jenis data diatas yakni bisa nominal, ordinal, interval dan rasio. Hanya data kontinues berlaku pada interval dan rasio saja.</p>
+<p>Pada bagian pengumpulan data adalah proses pencatatan atau peristiwa dari karakteristik elemen yang akan menjadi penelitian. Data dikumpulkan dalam tabel dan bias aha baris pertama adalah header. Kemudiannada kolom yang mewakili karakter dan di ssbelah kiri adalah nomor yang menunjukkan angka dari individual yang kita sudah cari. Pada bagian akhir adalah sumber dari data. Sumber dari data adalah skeinder kalau kita membuat data dari lembaga, badan , perusahaan atau peneliti lain. Kalau data itu merupakan pengumpulan kita maka kita bisa menuliskan sumber data primer dan jangan lupa menyebutkan tahunnya.</p>
+<p>Pada pengerjaan tabel di rstudio cukup repot tetapi bukan tidak bisa anda bisa langsung membuat tabel atau membuat terlebih dahulu data frame.</p>
+<p>Sebelum melangkah jauh mengenai statistik kita berbicara mengenai data terlebih dahulu. ilmu statistik tidak akan kita dapati tanpa data maka kita tidak akan mengerti apa yang namanya statistik tersebut.</p>
+<p>Data adalah sesuatu yang penting. Menurut beberapa ahli, data adalah sesuatu. Sesuatu adalah menggambarkan sesuatu mahluk atau benda mati. data ada di mana- mana dari lingkungan yang Sangat besar hingga lingkungan yang kecil.</p>
+<p>Dalam diri kita ada data. Saat kita kecil sudah dapatkan nama dari orang tua kita. Itu yang membedakan kita dengan individu yang lainnya. Pihak rumah sakit akan mencatat berat, tinggi bayi, cap kaki bayi bahkan golongan darah. Semua itu akan menjadi data dalan akte kita.</p>
+<p>Semakin meningkat manusia akan memiliki banyak sekali data. Mulai dari kartu identitas, dimana ia sekolah, dimana ia bekerja, dimana ia beribadah dan dimana ia bersosialisasi dan dimana yang lainnya. Semuanya akan menjadi data yang dapat berguna bagi dirinya sendiri atau bagi orang lain.</p>
+<p>Data bisa jadi berupa reputasi dari orang tersebut jika ia mempunyai suatu kebaikan dan integritas dalam dirinya. Bisa jadi ada yang berdusta atau yang terlalu berlebihan namun itu sebenarnya adalah realitas sebuah data.</p>
+<p>Mungkin akan ada pertanyaan apakah data bohong. Sebagai benda mati, data tidak bohong dan tidak ada data yang jelek ataupun jahat. Data yang bohong itu bisa diperoleh oleh pengumpulnya yang tidak jujur. Mereka berbohong untuk kepentingan diri ataupun kelompoknya. Data tersebut mungkin sudah lama tersimpan bisa mempengaruhi orang lain.</p>
+<p>Bisa jadi kebohongan tersebut karena sumber yang tidak benar. Terkadang sumber yang tidak benar itu terjadi karena permasalahan sepele yakni kemalasan dari sang Narasumber untuk menjawab sampai yang benar-benar bohong karena khawatir akan menjadi konsekuensi dari suatu hal.</p>
+<p>Penggunaan data kapan? Sejak zaman dahulu penggunaan data yang seiring dengan adanya manusia di muka bumi. Mereka ingin menghitung berapa banyaknya ternak. Maksudnya adalah agar ternak mereka terjaga. Mereka mengetahui mana yang menjadi ternak mereka dan Manau yang bukan menjadi ternak mereka.</p>
+<p>Perhitungan itu berkaitan dengan kewajiban mereka memberi pakan dan juga bagi mereka yang sudah banyak apakah perlu dijual atau dibatasi saja. Semuanya berguna dengan hal itu.</p>
+<p>Cerita pertama di Pemerintahan Roma Super power pada masa sebelum Masehi mencatat seluruh warganya yang berada di Roma. Hal it akan berkaitan mengenai penghuni penduduk Roma yang akan membayar pajak. Mereka yang tercatat dalam sejarah melakukan sensus pada penduduknya.</p>
+<p>Kini perhitungan sensus di tiap negara dilakukan tentu berdasarkan kemampuan negera tersebut. jika negara yang besar maka dapat menyensus hampir seluruh warganya sebaliknya di negara miskin hal ini sulit sekali karena hal ini berkaitan dengan pendanaan.</p>
+<p>Kalau di negeri kita ada yang namanya Badan Pusat Statistik yang menyensus seluruh data warga negara. Pada masa saat ini, BPS lah yang bertugas untuk mengumpulkan data untuk berbagai keperluan negara dan warga negara.</p>
+<p>Pemerintah yang bertujuan untuk menyejahterakan masyarakat dan berarti mencukupkan seluruh kebutuhan hidup masyarakat baik aandang, pangan dan papan.</p>
+<p>Para ilmuwan juga mempelajari statistik memenuhi untuk mencari ilmu yang selalu berkembang. Apa jadinya jika ilmu tidak ada pembuktian Batang Hari itu hanya sekedar teori teori pajak yang tidak ada semuanya aku alasan dan bukti bukti tersebut</p>
+<p>Dengan adanya statistik maka para ilmuwan dapat membuktikan bahwa faktor yang mempengaruhi suatu akibat adalah faktor tertentu. Untuk itulah dengan menggunakan software yang dimiliki oleh R maka akan dapat menemukan factor mana yang berpengaruh terhadap suatu faktor. Jika penggunaan software ini digunakan maka akan dapat menunjang perkembangan ilmu pengetahuan.</p>
+<p>Seperti data yang tidak terhitung warna. Kita tidak akan bisa membuat rata-rata warna dari sekumpulan kulit manusia. Oleh karena itu ada beberpa data yang bisa kita kenal sebelum kita bisa mengenal dalam mengelola data-data tersebut.</p>
+<ol style="list-style-type: decimal">
+<li><p>Data Kualitatif adalah data yang menunjukan kualitas dari suatau keadaan tertentu. Bisa jadi data tersebut mengenai warna, rasa, sikap dan lain-lain.</p></li>
+<li><p>Data Kuantitatif
+Data yang berupa angka atau menunjukkan satuan bilangan</p></li>
+<li><p>Data diskrit
+Data yang tidak bisa dipecah. Data ini hanya bisa menunjukkan pada satu bilangan saja</p></li>
+<li><p>Data kontinue data yang bisa ada dalam bilangan interval atau diantara bilangan</p></li>
+<li><p>Data Nominal
+Suatu Data yang tidak bisa dihitung tetapi mempunyai nama seperti warna kulit dan rasa</p></li>
+<li><p>Data Ordinal
+Data ini mempunyai urutan atau rangking seperti halnya rangking mahasiswa dalam ujian.
+Dalam data nominal kita tidak bisa membuat rata-rata karena hal itu tidak terhitung akan tetapi kita bisa melakukan pengolahan data.</p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="apa-itu-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="tipe-dan-struktur-data-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/03-parts.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

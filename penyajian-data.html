@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7 Penyajian Data | Statistik Deskriptif dengan RStudio</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 7 Penyajian Data | Statistik Deskriptif dengan RStudio" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 7 Penyajian Data | Statistik Deskriptif dengan RStudio" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="Andri Faisal dan Gatot Soepriyono" />
+
+
+<meta name="date" content="2024-11-07" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="tipe-dan-struktur-data-r.html"/>
+<link rel="next" href="ukuran-pemusatan.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#usage"><i class="fa fa-check"></i><b>1.1</b> Usage</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#render-book"><i class="fa fa-check"></i><b>1.2</b> Render book</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#preview-book"><i class="fa fa-check"></i><b>1.3</b> Preview book</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="hello-bookdown.html"><a href="hello-bookdown.html"><i class="fa fa-check"></i><b>2</b> Hello bookdown</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="hello-bookdown.html"><a href="hello-bookdown.html#a-section"><i class="fa fa-check"></i><b>2.1</b> A section</a>
+<ul>
+<li class="chapter" data-level="" data-path="hello-bookdown.html"><a href="hello-bookdown.html#an-unnumbered-section"><i class="fa fa-check"></i>An unnumbered section</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="cross.html"><a href="cross.html"><i class="fa fa-check"></i><b>3</b> Cross-references</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="cross.html"><a href="cross.html#chapters-and-sub-chapters"><i class="fa fa-check"></i><b>3.1</b> Chapters and sub-chapters</a></li>
+<li class="chapter" data-level="3.2" data-path="cross.html"><a href="cross.html#captioned-figures-and-tables"><i class="fa fa-check"></i><b>3.2</b> Captioned figures and tables</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="apa-itu-r.html"><a href="apa-itu-r.html"><i class="fa fa-check"></i><b>4</b> Apa itu R</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="apa-itu-r.html"><a href="apa-itu-r.html#perangkat-lunak-r"><i class="fa fa-check"></i><b>4.1</b> Perangkat Lunak R</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="apa-itu-statistik-deskriptif.html"><a href="apa-itu-statistik-deskriptif.html"><i class="fa fa-check"></i><b>5</b> Apa Itu Statistik Deskriptif</a></li>
+<li class="chapter" data-level="6" data-path="tipe-dan-struktur-data-r.html"><a href="tipe-dan-struktur-data-r.html"><i class="fa fa-check"></i><b>6</b> Tipe dan Struktur Data R</a>
+<ul>
+<li class="chapter" data-level="" data-path="tipe-dan-struktur-data-r.html"><a href="tipe-dan-struktur-data-r.html#data-frame"><i class="fa fa-check"></i>1. Data Frame</a></li>
+<li class="chapter" data-level="" data-path="tipe-dan-struktur-data-r.html"><a href="tipe-dan-struktur-data-r.html#vector-atomic"><i class="fa fa-check"></i>2. Vector Atomic</a></li>
+<li class="chapter" data-level="" data-path="tipe-dan-struktur-data-r.html"><a href="tipe-dan-struktur-data-r.html#matrix"><i class="fa fa-check"></i>3. Matrix</a></li>
+<li class="chapter" data-level="" data-path="tipe-dan-struktur-data-r.html"><a href="tipe-dan-struktur-data-r.html#list"><i class="fa fa-check"></i>4. List</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="penyajian-data.html"><a href="penyajian-data.html"><i class="fa fa-check"></i><b>7</b> Penyajian Data</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="penyajian-data.html"><a href="penyajian-data.html#pengantar"><i class="fa fa-check"></i><b>7.1</b> Pengantar</a></li>
+<li class="chapter" data-level="7.2" data-path="penyajian-data.html"><a href="penyajian-data.html#grafik-garis"><i class="fa fa-check"></i><b>7.2</b> Grafik Garis</a></li>
+<li class="chapter" data-level="7.3" data-path="penyajian-data.html"><a href="penyajian-data.html#box-plot"><i class="fa fa-check"></i><b>7.3</b> Box Plot</a></li>
+<li class="chapter" data-level="7.4" data-path="penyajian-data.html"><a href="penyajian-data.html#grafik-batang"><i class="fa fa-check"></i><b>7.4</b> Grafik Batang</a></li>
+<li class="chapter" data-level="7.5" data-path="penyajian-data.html"><a href="penyajian-data.html#grafik-pie"><i class="fa fa-check"></i><b>7.5</b> Grafik Pie</a></li>
+<li class="chapter" data-level="7.6" data-path="penyajian-data.html"><a href="penyajian-data.html#grafik-daun-atau-steam-leaf"><i class="fa fa-check"></i><b>7.6</b> Grafik Daun atau Steam leaf</a></li>
+<li class="chapter" data-level="" data-path="penyajian-data.html"><a href="penyajian-data.html#latihan"><i class="fa fa-check"></i>Latihan</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="ukuran-pemusatan.html"><a href="ukuran-pemusatan.html"><i class="fa fa-check"></i><b>8</b> Ukuran Pemusatan</a></li>
+<li class="chapter" data-level="9" data-path="ukuran-penyebaran.html"><a href="ukuran-penyebaran.html"><i class="fa fa-check"></i><b>9</b> Ukuran Penyebaran</a>
+<ul>
+<li class="chapter" data-level="" data-path="ukuran-penyebaran.html"><a href="ukuran-penyebaran.html#ukuran-variansi"><i class="fa fa-check"></i>1. Ukuran Variansi</a></li>
+<li class="chapter" data-level="" data-path="ukuran-penyebaran.html"><a href="ukuran-penyebaran.html#ukuran-standar-deviasi"><i class="fa fa-check"></i>2 ukuran standar deviasi</a></li>
+<li class="chapter" data-level="" data-path="ukuran-penyebaran.html"><a href="ukuran-penyebaran.html#rentang"><i class="fa fa-check"></i>3. Rentang</a></li>
+<li class="chapter" data-level="" data-path="ukuran-penyebaran.html"><a href="ukuran-penyebaran.html#sifat-dari-varians"><i class="fa fa-check"></i>4. Sifat dari varians</a></li>
+<li class="chapter" data-level="" data-path="ukuran-penyebaran.html"><a href="ukuran-penyebaran.html#soal-latihan-ukuran-penyebaran"><i class="fa fa-check"></i>Soal Latihan Ukuran Penyebaran</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="statistik-deskriptif-dengan-rsstudio.html"><a href="statistik-deskriptif-dengan-rsstudio.html"><i class="fa fa-check"></i><b>10</b> Statistik Deskriptif dengan RSstudio</a></li>
+<li class="chapter" data-level="11" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html"><i class="fa fa-check"></i><b>11</b> Footnotes and citations</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#footnotes"><i class="fa fa-check"></i><b>11.1</b> Footnotes</a></li>
+<li class="chapter" data-level="11.2" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#citations"><i class="fa fa-check"></i><b>11.2</b> Citations</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="blocks.html"><a href="blocks.html"><i class="fa fa-check"></i><b>12</b> Blocks</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="blocks.html"><a href="blocks.html#equations"><i class="fa fa-check"></i><b>12.1</b> Equations</a></li>
+<li class="chapter" data-level="12.2" data-path="blocks.html"><a href="blocks.html#theorems-and-proofs"><i class="fa fa-check"></i><b>12.2</b> Theorems and proofs</a></li>
+<li class="chapter" data-level="12.3" data-path="blocks.html"><a href="blocks.html#callout-blocks"><i class="fa fa-check"></i><b>12.3</b> Callout blocks</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="sharing-your-book.html"><a href="sharing-your-book.html"><i class="fa fa-check"></i><b>13</b> Sharing your book</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="sharing-your-book.html"><a href="sharing-your-book.html#publishing"><i class="fa fa-check"></i><b>13.1</b> Publishing</a></li>
+<li class="chapter" data-level="13.2" data-path="sharing-your-book.html"><a href="sharing-your-book.html#pages"><i class="fa fa-check"></i><b>13.2</b> 404 pages</a></li>
+<li class="chapter" data-level="13.3" data-path="sharing-your-book.html"><a href="sharing-your-book.html#metadata-for-sharing"><i class="fa fa-check"></i><b>13.3</b> Metadata for sharing</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistik Deskriptif dengan RStudio</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="penyajian-data" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Chapter 7</span> Penyajian Data<a href="penyajian-data.html#penyajian-data" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="pengantar" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Pengantar<a href="penyajian-data.html#pengantar" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Setelah data kita kumpulkan maka kita bisa melakukan hal untuk menyajikan data karena seperti disebutkan bahwa data itu ada di mana-mana tetapi tidak bisa dibaca oleh ke semua orang karenanya data perlu dibentuk sajikan dalam beberapa bentuk yaitu setidaknya tabel dan grafik. Bentuk penyajian data ini untuk bisa dibaca oleh orang yang berkepentingan untuk membaca data tersebut memang tidak semua data itu adalah bebas kecuali memang data yang harus diungkap kepada publik harus diberikan penjelasan sejelas-jelasnya kepada para orang yang membutuhkan data tersebut.
+Tentunya penting sekali seorang untuk menyajikan data agar bisa terbaca itu maka disajikan dalam bentuk yang mudah dibaca dan mudah dimengerti oleh penggunanya tentu saja. Kalau bagi pengguna orang yang berintelektual maka cukup bisa disajikan dalam bentuk yang cukup unik tetapi kalau dibutuhkan kepada masyarakat pada umumnya harus disajikan secara bentuk umum sehingga tidak ada rasa seseorang yang disembunyikan informasi yang penting bagi kepentingan publik ini sesuai dengan undang-undang keterbukaan informasi tersebut. Tentu tidak semua orang bisa menyajikan data dan terkadang dengan bentuk penyajian data yang tidak bisa atau tidak bisa menyajikan data akan memberikan satu interprestasi yang salah di kalangan masyarakat bisa jadi atau penggunaannya usernya dengan penyajian yang salah bisa jadi akan membuat suatu keputusan yang salah juga karena berdasarkan informasi yang salah yang keliru maka akan menghasilkan informasi yang keliru juga</p>
+<p>Penyajian data yang paling penting adalah tabel dari tabel bentuknya itu sederhana setelah kita mengumpulkan data tersebut kita akan mengkompilasikan atau mengumpulkan data-data yang sejenis dan dimasukkan dalam kategori tertentu misalnya berapa jumlah siswa yang ada di kampus. itu akan dibagi dalam beberapa kategori misalnya kategori tahun angkatan dari angkatan pertama sampai angkatan ke-4 kemudian juga dibagi lagi menjadi kategori beberapa yakni seperti jurusan ataupun program studi tersebut bisa saja manajemen, akuntansi, ekonomi, komunikasi, administrasi bisnis ilmu politik dan ilmu Hukum
+Kalau kita membaca tabel maka kita harus dengan melihat hati-hati itu semuanya harus perkaranya adalah hati-hati karena mengenai masalah data agar tidak terjadi suatu kesalahpahaman dalam pengambilan keputusan dengan membaca tabel ini sebenarnya kita harus meniti satu demi satu kategori sehingga kita dapat menyimpulkan apa yang kategori yang mempunyai paling banyak misalnya kita di suatu daerah apa suatu produk yang paling laku di daerah tersebut maka mau tidak mau kita harus melihat seluruh daerah yang mempunyai kategori ini nggak mungkin tidak mudah seperti ini ya terlebih kalau jumlah tabelnya itu banyak sekali nah karenanya seorang itu harus bisa mampu menjanjikan data dengan bentuk yang bisa diterima oleh pengguna tentu kalau penggunanya akademisi ya berbeda dengan pengguna pada masyarakat harus disesuaikan dengan membuat penyajian data yang bisa digunakan oleh pengguna (user).
+Dalam membuat tabel kita akan melihat bahwa pada bagian-bagian pertama yang akan harus dipenuhi setidaknya oleh pembuat tabel itu bukan hanya sebuah kotak-kota yang berisi kategori tetapi dengan angka tetapi juga lebih dahulu ada bagian bisa jadi kalau orang yang sudah memahami maka halnitu tidak menjadi masalah sebab ia mampu untuk menerjemahkan dan menginterpretasikan apa yang ada dalam tabel tersebut.</p>
+<p>Tentu ada beberapa hal atau bentuk penyajian data yang biasa digunakan yaitu pertama grafis ini suatu gambar yang bisa bentuk garis kotak-kotak tersebut dengan adanya grafik ini seseorang bisa langsung membaca data dengan baik tentu untuk bentuknya tidak semua bisa seperti grafik kotak atau box plot itu bagi saya bagi penulis itu sangat susah untuk diterjemahkan karena ada satu kotak tapi ada garis-garis tertentu yang mungkin tidak akan bisa dibaca oleh orang yang terpajak sekalipun tetapi dengan nanti dikatakan kalau grafik yang berbentuk sederhana seperti grafik garis batang atau lingkaran itu hampir semua orang dan kebanyakan orang yang sudah bersekolah sudah bisa membaca maksud dari data-data tersebut. Harga baru tidak dipungkiri bahwa dengan adanya grafik membuat tulisan menarik dan dia seperti merangkum dari semua deskripsi data-data yang sudah diolah ke dalam bentuk yang sangat sederhana sekali bisa jadi dari 5 tulisan maksudnya 5 halaman tulisan akan bisa tergambarkan lewat satu gambar saja yang sangat sederhana tersebut gitu daripada menggambarkan dalam bentuk tulisan yangbanyak sekali.
+Grafik apa yang akan saya pilih dalam penyajian data. Itu bergantung dengan yang menjadi kebutuhan. Dari penyajian data tersebut dan tentu juga akan berpengaruh pada data itu sendiri. Ada
+Bebeapa daata yang tidak cocok dengan jenis grafik. Misalnya grafik garis tidak cocok diterapkan pada data cross section penjualan makanan di sebuah toko dalam waktu satau periode (bisa tahun, bulan dan hari)
+Jenis grafik banyak sekali. Apalagi kalau banyak sekali perangkat lunak yang dapat untuk membuat suatu grafik yang bagus sekali namun pada dasarnya grafik ini terbagi dalam beberapa model seperti :</p>
+</div>
+<div id="grafik-garis" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> Grafik Garis<a href="penyajian-data.html#grafik-garis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Grafik ini adalah grafik yang paling sederhana yang dapat untuk menggambarkan suatu perkembangan suatu data. Yang ada. Dalam grafik garis kita akan melihat trend yang meningkat karena suatu kenaikan atau data yang meningkat perlahan-lahan ataupun bisa peningkatan tersebut melonjak begitu tajam karena daya yang meningkat aecara tajam.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="penyajian-data.html#cb30-1" tabindex="-1"></a>roket<span class="ot">=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">10</span>,<span class="dv">13</span>,<span class="dv">3</span>,<span class="dv">4</span>)</span>
+<span id="cb30-2"><a href="penyajian-data.html#cb30-2" tabindex="-1"></a><span class="fu">plot</span>(roket)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="penyajian-data.html#cb31-1" tabindex="-1"></a><span class="co">#jika mau merubah gaya grafik</span></span>
+<span id="cb31-2"><a href="penyajian-data.html#cb31-2" tabindex="-1"></a><span class="fu">plot</span>(roket,<span class="at">type=</span><span class="st">&quot;o&quot;</span>,<span class="at">col=</span><span class="st">&quot;blue&quot;</span>)</span>
+<span id="cb31-3"><a href="penyajian-data.html#cb31-3" tabindex="-1"></a></span>
+<span id="cb31-4"><a href="penyajian-data.html#cb31-4" tabindex="-1"></a><span class="fu">title</span>(<span class="at">main=</span><span class="st">&quot;Jumlah Roket Jatuh&quot;</span>,<span class="at">col.main=</span><span class="st">&quot;red&quot;</span>,<span class="at">font.main=</span><span class="dv">4</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-10-2.png" width="672" /></p>
+<p>Untuk grafik garis maka yang paling sesuai dengan karakteristik data adalah data time series. Bisa juga data panel yang menunjukka. . apakah kalau data cross section bisa diubah. Maslaah mengubah tidak sulit karena hal tersebut dapat diubah dengan cara memasukkan nilai dan grafik
+Analisis grafik untuk mengidentifikasi pola, tren, atau perubahan seiring waktu . Visualisasi memberikan interprestasi dari peningkatan sesuatu data atau penurunan.</p>
+</div>
+<div id="box-plot" class="section level2 hasAnchor" number="7.3">
+<h2><span class="header-section-number">7.3</span> Box Plot<a href="penyajian-data.html#box-plot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Box Plot adalah Plot atau grafik dalam bentuk kotak atau box. Penampilannya seperti kotak mengambang yang ada bagian tengahnya tersebut.
+Untuk mengenali grafik ini maka ada bagian seperti box yang dibagi dua dan juga ada seperti tali di bagian tengah yang disebut juga whiskers.
+Bagi Penulis Box Plot cukup merepotkan bagi penulis dan penulis berkeyakinan bahkan mahasiswa kebanyakan tidak dapat mebaca plot tersebut karena memang jarang digunakan apalagi kalau orang umum. Bentuknya kurang umum dibandingan grafik garis, batang, lingkaran maupun gamvar , Sedangkan grafik di sana adalah termausk grafik yang mudah dibca dengan orang yang awam.
+KIta melihat kota sebagai representasi dari nilai Kuartil 3 sampain nilai Kuartil satu . Khusus Box plot ini untuk mencari bentuk dari sekumpulan data tersebut. Sekumpulan data atau satu set adalah biasanya yang dijadikan sample . ini digunakan untuk mendeteksi outlier yang biasanya cukup merepotkan adalah data yang berbeda dengan kebanyakan atau juga data ekstrim yang ada dalam sekumpulan data. data outlier adalah data yang ada dalam sekumpulan namun mempunyai nilai yang jauh berbeda dalam rentangan Kuartil satu Maupun kuartil 3 sedangkan nilai ekstrim adalah nilai yang sudah sangat jauh beda. Ini penting karena ada memang data yang dipilih-pilih unuk kesesuaian kegunaan data.
+Untuk mendeteksi outlier kita melihat adanya whisker di atas ataupun dibawah box tersebut. kalau ada nlai whisker yang panjang sekalai melebih tiga kali lebar kotak maka itu mengindikasikan adanya suatu nilai ekstrim.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="penyajian-data.html#cb32-1" tabindex="-1"></a><span class="co"># Menggunakan data bawaan mtcars</span></span>
+<span id="cb32-2"><a href="penyajian-data.html#cb32-2" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
+<span id="cb32-3"><a href="penyajian-data.html#cb32-3" tabindex="-1"></a></span>
+<span id="cb32-4"><a href="penyajian-data.html#cb32-4" tabindex="-1"></a><span class="co"># Membuat box plot untuk menunjukkan distribusi konsumsi bahan bakar (mpg) berdasarkan jumlah silinder (cyl)</span></span>
+<span id="cb32-5"><a href="penyajian-data.html#cb32-5" tabindex="-1"></a><span class="fu">boxplot</span>(mpg <span class="sc">~</span> cyl, </span>
+<span id="cb32-6"><a href="penyajian-data.html#cb32-6" tabindex="-1"></a>        <span class="at">data =</span> mtcars, </span>
+<span id="cb32-7"><a href="penyajian-data.html#cb32-7" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Box Plot Konsumsi Bahan Bakar Berdasarkan Jumlah Silinder&quot;</span>,</span>
+<span id="cb32-8"><a href="penyajian-data.html#cb32-8" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;Jumlah Silinder&quot;</span>,</span>
+<span id="cb32-9"><a href="penyajian-data.html#cb32-9" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Konsumsi Bahan Bakar (mpg)&quot;</span>,</span>
+<span id="cb32-10"><a href="penyajian-data.html#cb32-10" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;lightblue&quot;</span>, <span class="st">&quot;lightgreen&quot;</span>, <span class="st">&quot;salmon&quot;</span>),</span>
+<span id="cb32-11"><a href="penyajian-data.html#cb32-11" tabindex="-1"></a>        <span class="at">border =</span> <span class="st">&quot;darkblue&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+</div>
+<div id="grafik-batang" class="section level2 hasAnchor" number="7.4">
+<h2><span class="header-section-number">7.4</span> Grafik Batang<a href="penyajian-data.html#grafik-batang" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Sesuai dengan namanya grafik batang adalah berisi batang atau persegi yang dapat untuk mewakili atau representasi data
+Pembuatan grafik batang dapat dilakukan manual dengan rangka pembuatan manual kita bisa membuat grafik batang dengan nilai yang sudah ada di dalam tabel tersebut titik memang setiap pembuatan grafik itu tidak akan terlepas dari apa yang namanya tabel kalau kita membuat grafik sebelumnya itu.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="penyajian-data.html#cb33-1" tabindex="-1"></a><span class="co">#Membuat Data terlebih dahulu</span></span>
+<span id="cb33-2"><a href="penyajian-data.html#cb33-2" tabindex="-1"></a>stocktoko <span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&quot;Poly&quot;</span>, <span class="st">&quot;Genius&quot;</span>, <span class="st">&quot;Doma&quot;</span>, <span class="st">&quot;Color&quot;</span>, <span class="st">&quot;Beski&quot;</span>)</span>
+<span id="cb33-3"><a href="penyajian-data.html#cb33-3" tabindex="-1"></a>jumlahstock<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">110</span>,<span class="dv">20</span>,<span class="dv">30</span>,<span class="dv">40</span>,<span class="dv">50</span>)</span>
+<span id="cb33-4"><a href="penyajian-data.html#cb33-4" tabindex="-1"></a><span class="co">#Membuat data frame </span></span>
+<span id="cb33-5"><a href="penyajian-data.html#cb33-5" tabindex="-1"></a>stoko<span class="ot">&lt;-</span><span class="fu">data.frame</span>(stocktoko,jumlahstock)</span>
+<span id="cb33-6"><a href="penyajian-data.html#cb33-6" tabindex="-1"></a><span class="co">#Membuat Grafik</span></span>
+<span id="cb33-7"><a href="penyajian-data.html#cb33-7" tabindex="-1"></a><span class="fu">View</span>(stoko)</span>
+<span id="cb33-8"><a href="penyajian-data.html#cb33-8" tabindex="-1"></a></span>
+<span id="cb33-9"><a href="penyajian-data.html#cb33-9" tabindex="-1"></a><span class="fu">barplot</span>(stoko<span class="sc">$</span>jumlahstock,<span class="at">main=</span><span class="st">&quot;stok toko sepeda suka&quot;</span>, <span class="at">xlab=</span><span class="st">&quot;nama stock&quot;</span>, <span class="at">ylab=</span><span class="st">&quot;jumlahstock&quot;</span>,<span class="at">names.arg=</span>stoko<span class="sc">$</span>stocktoko)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="penyajian-data.html#cb34-1" tabindex="-1"></a><span class="fu">barplot</span>(stoko<span class="sc">$</span>jumlahstock,<span class="at">main=</span><span class="st">&quot;stok toko sepeda suka&quot;</span>, <span class="at">xlab=</span><span class="st">&quot;nama stock&quot;</span>, <span class="at">ylab=</span><span class="st">&quot;jumlahstock&quot;</span>,<span class="at">names.arg=</span>stoko<span class="sc">$</span>stocktoko,<span class="at">col=</span><span class="fu">heat.colors</span>(<span class="dv">5</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-12-2.png" width="672" /></p>
+<p>Kita masih memiliki kategori apa saja yang akan kita jadikan limbah tabel misalnya suatu wilayah mempunyai penghasilan sebagai penghasilan kelapa sawit di suatu produksi kita akan membuat batang satu antara kabupaten a yang dihasilkan menjadi poros dari sumbu x atau sumbu horizontal. Kemudian beberapa jumlah dari sumbu y tersebut kalau kita mencontohkan jumlah dari produksi sawit tersebut maka yang tinggi akan diwakili oleh batang yang paling tinggi kita bisa ganti batang kelapa sawit menjadi batang sawit tentu bisa namun judulnya bukan lagi grafik batang grafik gambar dalam grafik batang ada juga grafik yang berbentuk tiga dimensi terdiri atas suatu ruang yang dalam gerakan 3 dimensi atau bahkan 4 dimensi karena itu susah akan seperti waktu atau interaktif hal itu kalau kita hanya ingin menyebabkan maksudnya dalam bentuk seperti buku Harry Potter yang gambarnya atau ilustrasi yang bergerak gitu kalau saya disuruh membuat data tentang data pribadi untuk Anda membuat tahu mau dibuat apa karena kita tidak mempunyai tujuan dalam pengumpulan data tersebut sekali untuk membuat tabel grafik tersebut.
+Bagi penulis, box plot cukup untuk mendapatkan penulis berkaitan kalian bahkan tidak ada yang dapat membuat box tersebut lain hanya dengan grafik garis batang atau pie dan sejenisnya merupakan grafik yang mudah dibacakan oleh orang awam sekalipun. Kita melihat kotak itu representasi daripada nilai Q3 sampai Q1 yang dinamakan interkuartil. Khusus buat untuk mencari suatu data tersebut itu mendeteksi suatu dari out layer ataupun data ekstrem yang ada sekumpulan data tersebut data output adalah data yang ada dalam tetapi nilainya berbeda masalah ada yang juga sekali dan ini penting. Karenanya menang data tersebut juga dipilah-pilah untuk kesesuaian dengan kesesuaian.</p>
+<p>Box Plot adalah grafik dalam bentuk kotak atau box penampilan seperti kotak yang mengambang diantara tertentu dan bagiannya adalah whisker yang berada di tengah kotak tersebut sedangkan ada nilai Q3 dan Q1 kalau kita akan mencari nilai out player begitu panjang whiskernya itu bisa dia ke bawah ataupun bisa dia juga ke atas.</p>
+<p>Membuat garis grafik dapat kita harus menyiapkan data yang akan kita persiapkan untuk grafik kita dengan individu atau juga kategori dan daya adalah data dari periode atau individual kemudian pasangkan nilai sesuai dengan pasangannya baik yang ada di sumbu x maupun juga di garis y kemudian nilai x y dipasangkan maka kita beri titik sehingga sudah dapat anda untuk menyambungkan tiap akan sebagai kita bisa membuat suatu garis apakah grafik garis berlaku untuk beda data</p>
+</div>
+<div id="grafik-pie" class="section level2 hasAnchor" number="7.5">
+<h2><span class="header-section-number">7.5</span> Grafik Pie<a href="penyajian-data.html#grafik-pie" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Grafik PIe dinamakan setelah grafik ini mirip kue Pie yang berbentuk bulat. Gambar grafik pie akan mewakillkan satu kategori saja yang dapat digambarkan kalau ada banyak kategori maka akan sulit saja.
+Grafik Pie ini akan memberikan suatau visualisasi yang bagus dengan warna-warna yang menarik dan kontras. Bisa juga dengan membentuk pola seperti arsiran atau pola kalau grafik pie tersebut adalah berwarna hitam dan putih.
+Grafik ini akan bagus kalau saja yang idterangkan mempunyai porsi yang hampir mirip seperti mempunyai elemen data hanya empat dan bagian porsi sekitar 25%. Hanya saja grafik ini akan rumit kalau elemennya lebih dari 10 namun ada yang porsi yang kecil sekalai. misalnya pada saat perhitungan suara pemilu di kpu maka akan terlihat begitu banyak sekali kalau partai-paratai yang berhasil duduk di Senayan alias Gedung MPR dengan partai yang rendah sekali. Ada setidaknya lima partai yang menyempil di bagian tersbeut. seperti grafik lainnya maka akan sulit sekali untuk menebak berapa jumlah proisinya dan mungkin bagi yang kertebatasan dalam penglihatan baik plus ataupun minus maka akan sulit juga untuk melihat seperti ini.
+Untuk mmebuatnya secara manual maka kita ahrus menghitung porsi dari data tersebut. Kalau sudah ada data tersedia prosi maka akan dibuat terlebih dahulu bagiannya. LIngkaran atau pie yang ada memang dibagi menurut presentasenya dengan presentase yang besar mendapatkan bagian atau poris yang lebih besar.
+Untuk membuat ini kita harus hitung kalau lingkaran tersebut adalah 360 derajat. Untuk membuat suatau lingjaran yang presisi maka kita mmebutuhkan mistar busur yang mungkin sudah lama tidak digunakan (gambar mistar bujur)
+misalnya kita menemukan kalau suatu kategori</p>
+<p>(kategori dan elemen dijelaskan di awal) bernilai porsi 25 maka kita bisa mengkalikan angka 25% dengan 360 derajat yang hasilnya 90 derajat. Maka hal itu akan kita hitung sebagai nilai sepermpat yang bisa saja tegak atau mungkin anda memlih yang ada di bagian bawah atau atas selama intu setara dengan 90% maka itu tidak menjadi masalah.</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="penyajian-data.html#cb35-1" tabindex="-1"></a><span class="fu">pie</span>(stoko<span class="sc">$</span>jumlahstock,<span class="at">labels =</span> stoko<span class="sc">$</span>jumlahstock)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="penyajian-data.html#cb36-1" tabindex="-1"></a><span class="co">#Menambahkan judul Grafik</span></span>
+<span id="cb36-2"><a href="penyajian-data.html#cb36-2" tabindex="-1"></a><span class="fu">pie</span>(stoko<span class="sc">$</span>jumlahstock,<span class="at">labels=</span>stoko<span class="sc">$</span>jumlahstock, <span class="at">main=</span><span class="st">&quot;Stok Toko Sepeda Suka&quot;</span>,<span class="at">col=</span><span class="fu">colors</span>(<span class="dv">5</span>))</span>
+<span id="cb36-3"><a href="penyajian-data.html#cb36-3" tabindex="-1"></a><span class="co">#Menambahkan Legenda</span></span>
+<span id="cb36-4"><a href="penyajian-data.html#cb36-4" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>,<span class="fu">c</span>(<span class="st">&quot;Poly&quot;</span>,<span class="st">&quot;Genius&quot;</span>,<span class="st">&quot;Doma&quot;</span>,<span class="st">&quot;Color&quot;</span>,<span class="st">&quot;Beski&quot;</span>),<span class="at">cex=</span><span class="fl">0.7</span>,<span class="at">fill=</span><span class="fu">colors</span>(<span class="dv">5</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-13-2.png" width="672" /></p>
+</div>
+<div id="grafik-daun-atau-steam-leaf" class="section level2 hasAnchor" number="7.6">
+<h2><span class="header-section-number">7.6</span> Grafik Daun atau Steam leaf<a href="penyajian-data.html#grafik-daun-atau-steam-leaf" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Grafik daun ini seperti bentuk pohon yang mmepunyai daun-daun. aadapun pohon terdiri yang cabang merupakan kategori dari yang kita cari. Pada data berkelompok atau mungkin data tidak berkelompok kita bisa membuatkan kelompok tersebut. Dengan grafik daun maka kita bisa menmapilkan data dalam kelompok. Batang tersebut adlah nilai yang menjdi kelas dalam distribusi frekuensi.
+Yang menjdi daun adalah nilai-nilai angka. Bagi yang awalnya belum pernah membaca bentuk grafik ini mungkin akan membeinggungkan anda. Namum bukan berarati angka-angka yang ada tidak mempunyai arti yang berarti angka di belakang data tersebut.
+jika membuat manual maka data-data ini akan sulit sebab kita harus menelsuri data-data yang menjadi anggota kelas tersebut.
+Pemilihan Grafik Data
+Setiap grafk mempunyai keistimewaaan dan kekurangan. Maka kita harus memakainya dengan bijak. Kalau grafik di BPS maka kemungkinan ada banyak yang akan menggunakan grafik berupa batang dan garis saja. Kedua grafik ini umum dan bisa menggambarkan data jenis apa saja. (Sukestiyarno, 2014)
+Penggunaan grafik bantang mungkin kurang menarik daripada penggunaan grafik lingkaran namun penggunaan grafik ini akan membuat lebih efisien. Efisien dalam menyakian data yang sudah tersedia.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="penyajian-data.html#cb37-1" tabindex="-1"></a><span class="co">#membuat vector data nilai kelas statistika</span></span>
+<span id="cb37-2"><a href="penyajian-data.html#cb37-2" tabindex="-1"></a>nilaistatistika <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">78</span>,<span class="dv">45</span>,<span class="dv">67</span>,<span class="dv">76</span>,<span class="dv">55</span>,<span class="dv">68</span>,<span class="dv">59</span>,<span class="dv">42</span>,<span class="dv">74</span>,<span class="dv">64</span>)</span>
+<span id="cb37-3"><a href="penyajian-data.html#cb37-3" tabindex="-1"></a><span class="co">#membuat perintah grafik daun </span></span>
+<span id="cb37-4"><a href="penyajian-data.html#cb37-4" tabindex="-1"></a><span class="fu">stem</span>(nilaistatistika)</span></code></pre></div>
+<pre><code>## 
+##   The decimal point is 1 digit(s) to the right of the |
+## 
+##   4 | 25
+##   5 | 59
+##   6 | 478
+##   7 | 468</code></pre>
+<p>Dapat kita lihat nilai tersebut adalah 4 nilai dari puluhan yang merupakan nilai dari stataistika sendagnkan 2 dan 5 adalah mewakili nilia 42 dan 45 dan seterusnya ke bawah</p>
+</div>
+<div id="latihan" class="section level2 unnumbered hasAnchor">
+<h2>Latihan<a href="penyajian-data.html#latihan" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li>Apakah jenis grafik yang dapat digunakan untuk jenis data berkala? Jelaskan?</li>
+<li>Jelaskan komponen dalam grafik daun? Apakah grafik ini efisien untuk data yang banyak jelaskan pendapat anda?</li>
+<li>Buatlah grafik pie yang terdiri dari kategori berikut
+Anis 52%
+Prabowo 25%
+Ganjar 16%</li>
+<li>Cobalah interprestasikan grafik daun yang ada di sana. Sebutkan data-data yang ada dalam grafik daun tersebut?</li>
+<li>Sebagai mahasiswa manajemen anda mendapatkan tugas untuk menyelidiki hal berikut:</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>Harga saham yang meningkat ketika terjadinya perang Iran</li>
+<li>Menurunnya pemasaran seblak pada tahun ini</li>
+<li>Pekerja yang tetap kualitasnya meksi sudah mendapatkan uang honor tambahan</li>
+<li>Google trend tentang suatu trend di website</li>
+</ol>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="tipe-dan-struktur-data-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="ukuran-pemusatan.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/03-parts.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
